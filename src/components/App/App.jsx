@@ -11,7 +11,7 @@ const App = () => {
   const [error, setError] = useState(false);
 
   const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("dog");
+  const [query, setQuery] = useState("");
 
   const handleSearch = (newQuery) => {
     setQuery(newQuery);
@@ -25,6 +25,7 @@ const App = () => {
         setError(false);
         setIsLoading(true);
         const data = await fetchPhotos(query, page);
+
         setImages((prevImages) => {
           return [...prevImages, ...data];
         });
