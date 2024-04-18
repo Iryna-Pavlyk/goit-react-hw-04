@@ -7,11 +7,18 @@ import Loader from "../Loader/Loader";
 
 const App = () => {
   const [images, setImages] = useState([]);
-  const [isloading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  // const [inputValue, setInputValue] = useState("");
 
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
+
+  const handleSearch = (newQuery) => {
+    setImages([]);
+    setPage(1);
+    setQuery(newQuery);
+  };
 
   useEffect(() => {
     async function getImages() {
@@ -19,6 +26,7 @@ const App = () => {
         setIsLoading(true);
         setError(false);
         const data = await fetchPhotos(query, page);
+
         setImages((prevImages) => {
           return [...prevImages, ...data];
         });
@@ -29,15 +37,15 @@ const App = () => {
       }
     }
     getImages();
-  }, []);
+  }, [page, query]);
 
   return (
     <div className={css.container}>
       <h1>Hello</h1>
-      <SearchBar onSubmit={{}} />
-      <Loader />
+      <SearchBar onSubmit={handleSearch} />
+      {isLoading && <Loader />}
       {error && <b>Error!</b>}
-      <ImageGallery />
+      {images.length > 0 && <ImageGallery items={images} />}
     </div>
   );
 };

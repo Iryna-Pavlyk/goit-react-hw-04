@@ -3,10 +3,13 @@ import ImageCard from "../ImageCard/ImageCard";
 const ImageGallery = ({ items }) => {
   return (
     <ul>
-      {/* Набір елементів списку із зображеннями */}
-      <li>
-        <ImageCard items={items} />
-      </li>
+      {items.map((item) => {
+        return (
+          <li key={item.id}>
+            <ImageCard item={item} />
+          </li>
+        );
+      })}
     </ul>
   );
 };

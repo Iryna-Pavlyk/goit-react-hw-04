@@ -5,7 +5,7 @@ axios.defaults.baseURL = "https://api.unsplash.com/";
 const ACCESS_KEY = "rBCsC-fJjRfqVZySZ3J3YLmA7m9I9IPv0mcMXek3qBU";
 
 export const fetchPhotos = async (searchQuery, currentPage) => {
-  const response = await axios.get("/search", {
+  const response = await axios.get("/photos", {
     params: {
       client_id: ACCESS_KEY,
       query: searchQuery,
@@ -15,5 +15,6 @@ export const fetchPhotos = async (searchQuery, currentPage) => {
       orientation: "landscape",
     },
   });
+  console.log(response.data.hits);
   return response.data.hits;
 };
