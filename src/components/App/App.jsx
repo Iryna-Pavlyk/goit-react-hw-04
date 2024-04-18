@@ -9,24 +9,22 @@ const App = () => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  // const [inputValue, setInputValue] = useState("");
 
   const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("dog");
 
   const handleSearch = (newQuery) => {
+    setQuery(newQuery);
     setImages([]);
     setPage(1);
-    setQuery(newQuery);
   };
 
   useEffect(() => {
     async function getImages() {
       try {
-        setIsLoading(true);
         setError(false);
+        setIsLoading(true);
         const data = await fetchPhotos(query, page);
-
         setImages((prevImages) => {
           return [...prevImages, ...data];
         });
@@ -37,7 +35,7 @@ const App = () => {
       }
     }
     getImages();
-  }, [page, query]);
+  }, [query, page]);
 
   return (
     <div className={css.container}>
