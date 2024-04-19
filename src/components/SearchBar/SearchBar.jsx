@@ -27,7 +27,7 @@ const SearchBar = ({ onSubmit, value }) => {
             autoFocus
             placeholder="Search images and photos"
           ></Field>
-          {value.trim() === "" && <Toaster />}
+          {value.trim() === "" && <Toaster position="top-right" />}
           <button className={css.btn} type="submit" onClick={notify}>
             Search
           </button>

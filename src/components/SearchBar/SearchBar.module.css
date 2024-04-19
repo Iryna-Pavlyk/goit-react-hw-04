@@ -15,4 +15,8 @@
 }
 .input {
   margin-right: 10px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  height: 30px;
 }

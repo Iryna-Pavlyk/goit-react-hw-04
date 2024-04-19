@@ -1,11 +1,12 @@
 import { MdError } from "react-icons/md";
+import css from "./ErrorMessage.module.css";
 
 const ErrorMessage = () => {
   return (
-    <b>
-      <MdError size={20} color={"red"} />
-      Error! Please try again!
-    </b>
+    <p className={css.text}>
+      <MdError className={css.icon} size={20} color={"red"} />
+      <b>Error! Please try again!</b>
+    </p>
   );
 };
 export default ErrorMessage;
