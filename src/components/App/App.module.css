@@ -8,3 +8,13 @@ body {
   margin: 0 auto;
   padding: 20px 30px;
 }
+
+html::-webkit-scrollbar {
+  width: 8px;
+  background: lightgray;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: SteelBlue;
+  border-radius: 50px;
+}
