@@ -36,7 +36,6 @@ const App = () => {
         });
       } catch (error) {
         setError(true);
-        setImages([]);
       } finally {
         setIsLoading(false);
       }
