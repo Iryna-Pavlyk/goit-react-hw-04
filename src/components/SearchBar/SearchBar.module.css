@@ -1,0 +1,18 @@
+.searchBar {
+  background-color: LightSteelBlue;
+  padding: 15px;
+}
+.form {
+  text-align: center;
+}
+.btn {
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+}
+.btn:hover {
+  color: SteelBlue;
+}
+.input {
+  margin-right: 10px;
+}

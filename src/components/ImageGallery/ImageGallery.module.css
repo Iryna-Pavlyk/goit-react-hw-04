@@ -1,0 +1,9 @@
+.item {
+  height: 390px;
+  width: 360px;
+}
+.list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}

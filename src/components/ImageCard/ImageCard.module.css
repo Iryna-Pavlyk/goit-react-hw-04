@@ -1,0 +1,12 @@
+.item {
+  height: 270px;
+}
+.image {
+  height: 100%;
+}
+.icon {
+  margin-right: 5px;
+}
+.text {
+  text-transform: capitalize;
+}

@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import css from "./App.module.css";
 import { fetchPhotos } from "../../gallery-api";
+import css from "./App.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 
 const App = () => {
   const [images, setImages] = useState([]);
@@ -19,18 +21,22 @@ const App = () => {
     setPage(1);
   };
 
+  const handleLoadMore = () => {
+    setPage(page + 1);
+  };
+
   useEffect(() => {
     async function getImages() {
       try {
         setError(false);
         setIsLoading(true);
         const data = await fetchPhotos(query, page);
-
         setImages((prevImages) => {
           return [...prevImages, ...data];
         });
       } catch (error) {
         setError(true);
+        setImages([]);
       } finally {
         setIsLoading(false);
       }
@@ -39,13 +45,17 @@ const App = () => {
   }, [query, page]);
 
   return (
-    <div className={css.container}>
-      <h1>Hello</h1>
-      <SearchBar onSubmit={handleSearch} />
-      {isLoading && <Loader />}
-      {error && <b>Error!</b>}
-      {images.length > 0 && <ImageGallery items={images} />}
-    </div>
+    <>
+      <SearchBar onSubmit={handleSearch} value={query} />
+      <div className={css.container}>
+        {isLoading && <Loader />}
+        {error && <ErrorMessage />}
+        {images.length > 0 && <ImageGallery items={images} />}
+        {images.length > 0 && !isLoading && (
+          <LoadMoreBtn onClik={handleLoadMore} />
+        )}
+      </div>
+    </>
   );
 };
 
