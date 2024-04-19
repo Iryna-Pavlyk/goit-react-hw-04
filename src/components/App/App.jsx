@@ -6,11 +6,13 @@ import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "../ImageModal/ImageModal";
 
 const App = () => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [showModal, setShowModal] = useState({ showModal: false });
 
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
@@ -23,6 +25,13 @@ const App = () => {
 
   const handleLoadMore = () => {
     setPage(page + 1);
+  };
+
+  const handleOpenModal = () => {
+    setShowModal({ showModal: true });
+  };
+  const handleCloseModal = () => {
+    setShowModal({ showModal: false });
   };
 
   useEffect(() => {
@@ -49,9 +58,17 @@ const App = () => {
       <div className={css.container}>
         {isLoading && <Loader />}
         {error && <ErrorMessage />}
+
         {images.length > 0 && <ImageGallery items={images} />}
         {images.length > 0 && !isLoading && (
           <LoadMoreBtn onClik={handleLoadMore} />
+        )}
+        {images.length > 0 && (
+          <ImageModal
+            modal={showModal}
+            onOpen={handleOpenModal}
+            onClose={handleCloseModal}
+          />
         )}
       </div>
     </>
