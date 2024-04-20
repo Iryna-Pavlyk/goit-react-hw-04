@@ -4,9 +4,9 @@ import { MdOutlineDescription } from "react-icons/md";
 import { AiOutlineUser } from "react-icons/ai";
 import css from "./ImageCard.module.css";
 
-const ImageCard = ({ item }) => {
+const ImageCard = ({ item, onOpen }) => {
   return (
-    <div className={css.item}>
+    <div className={css.item} onClick={onOpen}>
       <img
         className={css.image}
         src={item.urls.small}

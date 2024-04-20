@@ -1,6 +1,6 @@
 import ReactModal from "react-modal";
 
-const ImageModal = ({ modal, onOpen, onClose }) => {
+const ImageModal = ({ modal, onClose }) => {
   const customstyles = {
     overlay: {
       position: "fixed",
@@ -22,14 +22,13 @@ const ImageModal = ({ modal, onOpen, onClose }) => {
 
   return (
     <div>
-      <button onClick={onOpen}>Open</button>
+      {/* <button onClick={onOpen}>Open</button> */}
       <ReactModal
         isOpen={modal}
         contentLabel="Minimal Modal Example"
         style={customstyles}
         shouldCloseOnEsc={true}
       >
-        <p>Hello</p>
         <button onClick={onClose}>Close</button>
       </ReactModal>
     </div>

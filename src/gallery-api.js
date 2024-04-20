@@ -14,5 +14,5 @@ export const fetchPhotos = async (searchQuery, currentPage) => {
     },
   });
 
-  return response.data.results;
+  return response.data;
 };

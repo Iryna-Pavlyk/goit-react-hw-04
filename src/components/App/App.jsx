@@ -8,11 +8,14 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
+// firstNewImageRef.current?.scrollIntoView({ behavior: "smooth" });
+
 const App = () => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [showModal, setShowModal] = useState({ showModal: false });
+  const [showBtn, setShowBtn] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
@@ -28,10 +31,10 @@ const App = () => {
   };
 
   const handleOpenModal = () => {
-    setShowModal({ showModal: true });
+    setShowModal(true);
   };
   const handleCloseModal = () => {
-    setShowModal({ showModal: false });
+    setShowModal(false);
   };
 
   useEffect(() => {
@@ -40,8 +43,9 @@ const App = () => {
         setError(false);
         setIsLoading(true);
         const data = await fetchPhotos(query, page);
+        setShowBtn(data.total_pages && data.total_pages !== page);
         setImages((prevImages) => {
-          return [...prevImages, ...data];
+          return [...prevImages, ...data.results];
         });
       } catch (error) {
         setError(true);
@@ -52,6 +56,7 @@ const App = () => {
     getImages();
   }, [query, page]);
 
+  console.log(images);
   return (
     <>
       <SearchBar onSubmit={handleSearch} value={query} />
@@ -59,16 +64,14 @@ const App = () => {
         {isLoading && <Loader />}
         {error && <ErrorMessage />}
 
-        {images.length > 0 && <ImageGallery items={images} />}
-        {images.length > 0 && !isLoading && (
+        {images.length > 0 && (
+          <ImageGallery items={images} onOpen={handleOpenModal} />
+        )}
+        {images.length > 0 && !isLoading && showBtn && (
           <LoadMoreBtn onClik={handleLoadMore} />
         )}
         {images.length > 0 && (
-          <ImageModal
-            modal={showModal}
-            onOpen={handleOpenModal}
-            onClose={handleCloseModal}
-          />
+          <ImageModal modal={showModal} onClose={handleCloseModal} />
         )}
       </div>
     </>
