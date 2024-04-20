@@ -1,35 +1,22 @@
 import ReactModal from "react-modal";
+import css from "./ImageModal.module.css";
 
-const ImageModal = ({ modal, onClose }) => {
-  const customstyles = {
-    overlay: {
-      position: "fixed",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: "rgba(87, 81, 81, 0.80)",
-    },
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
-  };
-
+const ImageModal = ({ modal, onClose, url, alt }) => {
   return (
     <div>
-      {/* <button onClick={onOpen}>Open</button> */}
       <ReactModal
         isOpen={modal}
-        contentLabel="Minimal Modal Example"
-        style={customstyles}
+        contentLabel="Modal"
         shouldCloseOnEsc={true}
+        shouldCloseOnOverlayClick={true}
+        onRequestClose={onClose}
+        overlayClassName={css.overlay}
+        className={css.modal}
       >
-        <button onClick={onClose}>Close</button>
+        <button className={css.btn} onClick={onClose}>
+          Close
+        </button>
+        <img className={css.img} src={url} alt={alt} />
       </ReactModal>
     </div>
   );

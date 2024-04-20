@@ -1,0 +1,27 @@
+.icon {
+  margin-right: 5px;
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+  outline: none;
+}
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.75);
+  transition: opacity 300ms;
+}
+.btn {
+  position: absolute;
+  top: 2%;
+  left: 91%;
+  padding: 1px 3px;
+}

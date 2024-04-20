@@ -16,6 +16,9 @@ const App = () => {
   const [error, setError] = useState(false);
   const [showBtn, setShowBtn] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [modalUrl, setModalUrl] = useState("");
+  const [modalDesc, setModalDesc] = useState("");
+  const [modalAlt, setModalAlt] = useState("");
 
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
@@ -30,8 +33,11 @@ const App = () => {
     setPage(page + 1);
   };
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (imgUrl, imgAlt, imgDesc) => {
     setShowModal(true);
+    setModalUrl(imgUrl);
+    setModalAlt(imgAlt);
+    setModalDesc(imgDesc);
   };
   const handleCloseModal = () => {
     setShowModal(false);
@@ -71,7 +77,13 @@ const App = () => {
           <LoadMoreBtn onClik={handleLoadMore} />
         )}
         {images.length > 0 && (
-          <ImageModal modal={showModal} onClose={handleCloseModal} />
+          <ImageModal
+            modal={showModal}
+            onClose={handleCloseModal}
+            url={modalUrl}
+            alt={modalAlt}
+            desc={modalDesc}
+          />
         )}
       </div>
     </>
