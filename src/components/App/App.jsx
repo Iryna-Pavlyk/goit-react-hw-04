@@ -17,7 +17,6 @@ const App = () => {
   const [showBtn, setShowBtn] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalUrl, setModalUrl] = useState("");
-  const [modalDesc, setModalDesc] = useState("");
   const [modalAlt, setModalAlt] = useState("");
 
   const [page, setPage] = useState(1);
@@ -33,11 +32,10 @@ const App = () => {
     setPage(page + 1);
   };
 
-  const handleOpenModal = (imgUrl, imgAlt, imgDesc) => {
+  const handleOpenModal = (imgUrl, imgAlt) => {
     setShowModal(true);
     setModalUrl(imgUrl);
     setModalAlt(imgAlt);
-    setModalDesc(imgDesc);
   };
   const handleCloseModal = () => {
     setShowModal(false);
@@ -62,14 +60,12 @@ const App = () => {
     getImages();
   }, [query, page]);
 
-  console.log(images);
   return (
     <>
       <SearchBar onSubmit={handleSearch} value={query} />
       <div className={css.container}>
         {isLoading && <Loader />}
         {error && <ErrorMessage />}
-
         {images.length > 0 && (
           <ImageGallery items={images} onOpen={handleOpenModal} />
         )}
@@ -82,7 +78,6 @@ const App = () => {
             onClose={handleCloseModal}
             url={modalUrl}
             alt={modalAlt}
-            desc={modalDesc}
           />
         )}
       </div>
