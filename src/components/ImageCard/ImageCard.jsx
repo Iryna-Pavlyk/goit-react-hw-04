@@ -7,7 +7,7 @@ import css from "./ImageCard.module.css";
 const ImageCard = ({
   item: {
     alt_description: alt,
-    urls: { small, full },
+    urls: { small, regular },
     user: { name, location },
     likes,
   },
@@ -17,7 +17,7 @@ const ImageCard = ({
     <div
       className={css.item}
       onClick={() => {
-        onOpen(full, alt);
+        onOpen(regular, alt);
       }}
     >
       <img className={css.image} src={small} alt={alt} width={360} />

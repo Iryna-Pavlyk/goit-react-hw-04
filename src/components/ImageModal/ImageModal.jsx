@@ -13,10 +13,7 @@ const ImageModal = ({ modal, onClose, url, alt }) => {
         overlayClassName={css.overlay}
         className={css.modal}
       >
-        <button className={css.btn} onClick={onClose}>
-          Close
-        </button>
-        <img className={css.img} src={url} alt={alt} />
+        <img className={css.img} src={url} alt={alt} width={1080} />
       </ReactModal>
     </div>
   );
