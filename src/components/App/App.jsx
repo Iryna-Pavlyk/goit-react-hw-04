@@ -8,8 +8,6 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
-// firstNewImageRef.current?.scrollIntoView({ behavior: "smooth" });
-
 const App = () => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +35,7 @@ const App = () => {
     setModalUrl(imgUrl);
     setModalAlt(imgAlt);
   };
+
   const handleCloseModal = () => {
     setShowModal(false);
   };
