@@ -1,11 +1,13 @@
 .item {
   height: 270px;
   padding: 3px 3px 10px 3px;
-  cursor: zoom-in;
 }
 .icon {
   margin-right: 5px;
 }
 .text {
   text-transform: capitalize;
+}
+.image {
+  cursor: zoom-in;
 }

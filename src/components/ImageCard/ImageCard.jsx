@@ -14,13 +14,16 @@ const ImageCard = ({
   onOpen,
 }) => {
   return (
-    <div
-      className={css.item}
-      onClick={() => {
-        onOpen(regular, alt);
-      }}
-    >
-      <img className={css.image} src={small} alt={alt} width={360} />
+    <div className={css.item}>
+      <img
+        className={css.image}
+        src={small}
+        alt={alt}
+        width={360}
+        onClick={() => {
+          onOpen(regular, alt);
+        }}
+      />
       <div className={css.descr}>
         <p>
           <MdOutlineDescription color="lightgray" className={css.icon} />
