@@ -65,7 +65,7 @@ const App = () => {
 
   return (
     <>
-      <SearchBar onSubmit={handleSearch} value={query} />
+      <SearchBar onSubmit={handleSearch} />
       <div className={css.container}>
         {isLoading && <Loader />}
         {error && <ErrorMessage />}

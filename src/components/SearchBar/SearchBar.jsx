@@ -3,21 +3,22 @@ import css from "./SearchBar.module.css";
 import { BiSolidZap } from "react-icons/bi";
 import { Formik, Form, Field } from "formik";
 
-const SearchBar = ({ onSubmit, value }) => {
-  const notify = () =>
-    toast("Please enter a request", {
-      duration: 3000,
-      icon: <BiSolidZap color="orange" size={22} />,
-    });
+const SearchBar = ({ onSubmit }) => {
+  const handleSubmit = (values, actions) => {
+    if (values.query.trim() === "") {
+      toast("Please enter a request", {
+        duration: 3000,
+        icon: <BiSolidZap color="orange" size={22} />,
+      });
+    }
+    onSubmit(values.query);
+    actions.resetForm();
+  };
+
   return (
     <header className={css.searchBar}>
-      <Formik
-        initialValues={{ query: "" }}
-        onSubmit={(values, actions) => {
-          onSubmit(values.query);
-          actions.resetForm();
-        }}
-      >
+      <Toaster position="top-right" />
+      <Formik initialValues={{ query: "" }} onSubmit={handleSubmit}>
         <Form className={css.form}>
           <Field
             className={css.input}
@@ -27,8 +28,7 @@ const SearchBar = ({ onSubmit, value }) => {
             autoFocus
             placeholder="Search images and photos"
           ></Field>
-          {value.trim() === "" && <Toaster position="top-right" />}
-          <button className={css.btn} type="submit" onClick={notify}>
+          <button className={css.btn} type="submit">
             Search
           </button>
         </Form>
