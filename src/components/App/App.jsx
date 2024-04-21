@@ -41,6 +41,10 @@ const App = () => {
   };
 
   useEffect(() => {
+    if (query === "") {
+      return;
+    }
+
     async function getImages() {
       try {
         setError(false);
